@@ -12,7 +12,7 @@
 
   var database = firebase.database();
 
-  $("#inputArtist").on("submit", function (event) {
+  $("#formID").on("submit", function (event) {
   		event.preventDefault();
 
   		var name = $("#trainName").val().trim();
