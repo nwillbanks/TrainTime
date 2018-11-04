@@ -17,7 +17,7 @@
 
   		var name = $("#trainName").val().trim();
   		var destination = $("#trainDestination").val().trim();
-  		var firstTime = $("#firstTrainTime").val().trim();
+  		var firstTime = $("#firstTime").val().trim();
   		var frequency = $("#frequency").val().trim();
 
   		database.ref().push({
@@ -29,7 +29,7 @@
 
       $("#trainName").val("");
       $("#trainDestination").val("");
-      $("#firstTrainTime").val("");
+      $("#firstTime").val("");
       $("#frequency").val("");
 
   		return false;
@@ -37,8 +37,8 @@
 
   database.ref().orderByChild("dateAdded").on("child_added", function (childSnapshot) {
 
-  	var updateButton = $("<button>").html("<span class='glyphicon glyphicon-edit'></span>").addClass("updateButton").attr("data-index", index).attr("data-key", childSnapshot.key);
-  	var removeButton = $("<button>").html("<span class='glyphicon glyphicon-remove'></span>").addClass("removeButton").attr("data-index", index).attr("data-key", childSnapshot.key);
+  	var updateButton = $("<button>").html("<span class='fas fa-arrow-square-right'></span>").addClass("updateButton").attr("data-index", index).attr("data-key", childSnapshot.key);
+  	var removeButton = $("<button>").html("<span class='fas fa-arrow-square-left'></span>").addClass("removeButton").attr("data-index", index).attr("data-key", childSnapshot.key);
 
     var firstTime = childSnapshot.val().firstTime;
     var tFrequency = parseInt(childSnapshot.val().frequency);
@@ -66,26 +66,26 @@
     }
 
 
-  	var newRow = $("<tr>");
-    newRow.addClass("row-" + index);
-  	var cell1 = $("<td>").append(updateButton);
-  	var cell2 = $("<td>").text(childSnapshot.val().name);
-  	var cell3 = $("<td>").text(childSnapshot.val().destination);
-  	var cell4 = $("<td>").text(childSnapshot.val().frequency);
-  	var cell5 = $("<td>").text(nextTrain);
-  	var cell6 = $("<td>").text(minutesRemaining);
-  	var cell7 = $("<td>").append(removeButton);
+  	var addRow = $("<tr>");
+    addRow.addClass("row-" + index);
+  	var col1 = $("<td>").append(updateButton);
+  	var col2 = $("<td>").text(childSnapshot.val().name);
+  	var col3 = $("<td>").text(childSnapshot.val().destination);
+  	var col4 = $("<td>").text(childSnapshot.val().frequency);
+  	var col5 = $("<td>").text(nextTrain);
+  	var col6 = $("<td>").text(minutesRemaining);
+  	var col7 = $("<td>").append(removeButton);
 
-  	newRow
-	  	.append(cell1)
-	  	.append(cell2)
-	  	.append(cell3)
-	  	.append(cell4)
-	  	.append(cell5)
-	  	.append(cell6)
-	  	.append(cell7);
+  	addRow
+	  	.append(col1)
+	  	.append(col2)
+	  	.append(col3)
+	  	.append(col4)
+	  	.append(col5)
+	  	.append(col6)
+	  	.append(col7);
 
-	 $("#tableContent").append(newRow);
+	 $("#tableContent").append(addRow);
 
    index++;
   	
